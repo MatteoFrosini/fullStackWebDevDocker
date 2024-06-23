@@ -1,0 +1,6 @@
+FROM mariadb
+ARG UID
+ARG GID
+RUN if ! getent group $GID > /dev/null 2>&1; then groupadd -g $GID informatica; fi
+RUN if ! id -u $UID > /dev/null 2>&1; then adduser --disabled-password --uid $UID --gid $GID --gecos "" informatica; fi
+
